@@ -1,4 +1,4 @@
-# text-hyphen-rails
+# text_hyphen_rails
 
 This is a Rails/ActiveRecord-wrapper for the [text-hyphen](https://github.com/halostatue/text-hyphen) package.
 
@@ -6,7 +6,7 @@ This is a Rails/ActiveRecord-wrapper for the [text-hyphen](https://github.com/ha
 
 In your `Gemfile`:
 ```ruby
-gem 'text-hyphen-rails'
+gem 'text_hyphen_rails'
 ```
  Then `bundle install`.
 
