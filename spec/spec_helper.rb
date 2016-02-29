@@ -2,7 +2,7 @@ require 'simplecov'
 
 SimpleCov.start :rails do
   add_filter do |src|
-    src.filename =~ %r{active_job_store/(version|queue_adapters)}
+    src.filename =~ %r"text_hyphen_rails/version"
   end
 end
 
@@ -17,7 +17,7 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 
-  config.filter_run :focus
+  # config.filter_run :focus
   config.run_all_when_everything_filtered = true
 
   config.example_status_persistence_file_path = 'spec/.state'

@@ -3,7 +3,7 @@ require File.expand_path('../boot', __FILE__)
 require 'rails/all'
 
 Bundler.require(*Rails.groups)
-require "text_hyphen_ar"
+require "text_hyphen_rails"
 
 module Dummy
   class Application < Rails::Application
