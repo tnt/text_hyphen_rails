@@ -1,0 +1,16 @@
+# Ignore IDE files
+.idea/
+
+# RSpec
+spec/.state
+coverage
+
+# Dummy files
+spec/dummy/log/*.log
+spec/dummy/db/*.sqlite3
+
+# RDoc
+rdoc/
+
+# Gems
+*.gem
