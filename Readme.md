@@ -42,14 +42,14 @@ The follwing options are available:
 | hyphen          | "\u00ad"                  | the hyphen                                                                      |
 | lang            | :en_uk                    | the identifier of the language, one of: `:ca :cs :da :de1 :de2 :en_uk :en_us :es :et :eu :fi :fr :ga :hr :hsb :hu1 :hu2 :ia :id :is :it :la :mn :nl :no1 :no2 :pl :pt :ru :sv` |
 | lang_att        | nil                       | name of an attribute (method or column) that returns a language-identifier      |
-| word_regex      | /[[:alpha:]]{4,}/m        |    |
-| left / right    | 2 / 2                     | I'm not sure |
-| prefix / suffix | nil / :hyph               | |
-| replace_meth*   | false                     | replace the original method with the hyphenated one |
+| word_regex      | /[[:alpha:]]{4,}/m        | how to find words    |
+| left / right    | 2 / 2                     | I'm not sure     |
+| prefix / suffix | nil / :hyph               | prefix / suffix for the created mathods     |
+| replace_meth    | false                     | replace the original method (or attribute-getter?) with the hyphenated one |
 
-* not yet implemented
 
-You can also make the language setting be derived from an attribute in your model.
+### `lang_att`
+Make the language setting be derived from an attribute in your model.
 
 ```ruby
   text_hyphen :content, lang_att: :lang
@@ -71,5 +71,5 @@ If you had existing data where the language is named more conventionally in the 
 ## Exceptions
 
 Since the underlying [hyphenation algorithm](http://www.tug.org/docs/liang/) does not yield absolutely perfect results,
-there is the possibility of defining **exceptions**
+there is the possibility of defining **exceptions** - not yet implemented.
 
