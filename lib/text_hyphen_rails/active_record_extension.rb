@@ -9,20 +9,28 @@ module TextHyphenRails
     extend ActiveSupport::Concern
 
     module ClassMethods
-      def text_hyphen(*args, **opts)
-        args.each do |att|
-          opts = thr_opts att, opts
-          self.send(:define_method, thr_meth_name(att, opts)) do
-            str = read_attribute att
 
-            str.gsub opts[:word_regex] do |tok|
-              thr_hyphenator(opts).visualize tok, opts[:hyphen]
-            end
-          end
-        end
+      def text_hyphen(*args, **opts)
+        thr_create_methods(TextHyphenator, args, opts)
+      end
+
+      def html_hyphen(*args, **opts)
+        thr_create_methods(HtmlHyphenator, args, opts)
       end
 
       private
+
+      def thr_create_methods(h_class, args, opts)
+        args.each do |att|
+          g_opts = thr_g_opts att, opts
+          self.send(:define_method, thr_meth_name(att, g_opts)) do
+            str = read_attribute att
+            opts = thr_opts g_opts
+            h_class.new(str, opts).result
+          end
+        end
+
+      end
 
       def thr_meth_name(att, opts)
         if opts[:replace_meth]
@@ -32,23 +40,21 @@ module TextHyphenRails
         end
       end
 
-      def thr_opts(meth, opts)
+      def thr_g_opts(meth, opts)
         raise UnknownOptionError if (opts.keys - TextHyphenRails.settings.keys).size > 0
         TextHyphenRails.settings.merge opts
       end
     end
 
-    private
-
-    def thr_hyphenator opts
-      lang = if opts[:lang_att]
-               self.send(opts[:lang_att])
-             else
-               opts[:lang]
-             end
-      ::Text::Hyphen.new(language: lang,
-                         left: opts[:left],
-                         right: opts[:right])
+    def thr_opts opts
+      if opts[:lang_att]
+        lang = self.send(opts[:lang_att])
+        nopts = opts.dup
+        nopts[:lang] = lang
+        nopts
+      else
+        opts
+      end
     end
   end
 end

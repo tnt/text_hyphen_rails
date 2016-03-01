@@ -5,7 +5,7 @@ module TextHyphenRails
   @settings = { hyphen: "\u00ad",
                 lang: :en_uk,
                 lang_att: nil,
-                word_regex: /[[:alpha:]]{4,}/m,
+                min_word_length: 4,
                 left: 1,
                 right: 1,
                 prefix: nil,

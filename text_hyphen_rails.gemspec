@@ -10,8 +10,8 @@ Gem::Specification.new do |s|
 
   s.files       = Dir['{lib,config}/**/*']
 
-  s.add_dependency 'rails', '~> 3.1'
-  s.add_dependency 'text-hyphen', '~> 1.4'
+  s.add_runtime_dependency 'rails', '>= 3.1'
+  s.add_runtime_dependency 'text-hyphen', '~> 1.4'
 
   s.add_development_dependency 'sqlite3', '~> 1.3'
   s.add_development_dependency 'rspec-rails', '~> 3.4'

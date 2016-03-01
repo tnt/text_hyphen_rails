@@ -21,6 +21,8 @@ gem 'text_hyphen_rails'
 
 `text_hyphen :content` adds a `content_hyph`-method to your model that returns the hyphenated value of `content` (e.g. `@post.content_hyph`).
 
+There is also an `html_hyphen`-method which does the same but doesn't hyphenate HTML tags.
+
 ## Settings
 
 You can specify a number of settings globally or per method(s).
@@ -33,7 +35,7 @@ You can specify a number of settings globally or per method(s).
 
   # per method
   text_hyphen :content, lang: :en_uk, hyphen: '&shy;'
-  text_hyphen :another_att, lang: :de1
+  html_hyphen :another_att, lang: :de1
 ```
 The follwing options are available:
 
@@ -42,10 +44,10 @@ The follwing options are available:
 | hyphen          | "\u00ad"                  | the hyphen                                                                      |
 | lang            | :en_uk                    | the identifier of the language, one of: `:ca :cs :da :de1 :de2 :en_uk :en_us :es :et :eu :fi :fr :ga :hr :hsb :hu1 :hu2 :ia :id :is :it :la :mn :nl :no1 :no2 :pl :pt :ru :sv` |
 | lang_att        | nil                       | name of an attribute (method or column) that returns a language-identifier      |
-| word_regex      | /[[:alpha:]]{4,}/m        | how to find words    |
-| left / right    | 2 / 2                     | I'm not sure     |
-| prefix / suffix | nil / :hyph               | prefix / suffix for the created mathods     |
-| replace_meth    | false                     | replace the original method (or attribute-getter?) with the hyphenated one |
+| min_word_length | 4                         | minimal length of word to by hyphenated   |
+| left / right    | 1 / 1                     | I'm not sure     |
+| prefix / suffix | nil / :hyph               | prefix / suffix for the created methods (have no effect when `replace_meth` is `true`)    |
+| replace_meth    | false                     | replace the original method (or attribute-getter?) with the hyphenating one |
 
 
 ### `lang_att`
