@@ -1,4 +1,5 @@
 # text_hyphen_rails
+[![Build Status](https://travis-ci.org/tnt/text_hyphen_rails.svg)](https://travis-ci.org/tnt/text_hyphen_rails)
 
 This is a Rails/ActiveRecord-wrapper for the [text-hyphen](https://github.com/halostatue/text-hyphen) package.
 
