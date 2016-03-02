@@ -1,8 +1,10 @@
 module TextHyphenRails
+
   class HtmlHyphenator < Hyphenator
-    def initialize text, options
+
+    def initialize(text, lang, options)
+      super
       @doc = Nokogiri::HTML.fragment text
-      @opts = options
     end
 
     def result
@@ -22,5 +24,6 @@ module TextHyphenRails
       # broken
       @doc.xpath('//text()')
     end
+
   end
 end

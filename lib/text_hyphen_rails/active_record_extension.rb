@@ -22,11 +22,11 @@ module TextHyphenRails
 
       def thr_create_methods(h_class, args, opts)
         args.each do |att|
-          g_opts = thr_g_opts att, opts
-          self.send(:define_method, thr_meth_name(att, g_opts)) do
+          m_opts = thr_m_opts att, opts
+          self.send(:define_method, thr_meth_name(att, m_opts)) do
             str = read_attribute att
-            opts = thr_opts g_opts
-            h_class.new(str, opts).result
+            lang = _thr_lang m_opts
+            h_class.new(str, lang, m_opts).result
           end
         end
 
@@ -40,22 +40,22 @@ module TextHyphenRails
         end
       end
 
-      def thr_g_opts(meth, opts)
+      def thr_m_opts(meth, opts)
         raise UnknownOptionError if (opts.keys - TextHyphenRails.settings.keys).size > 0
         TextHyphenRails.settings.merge opts
       end
     end
 
-    def thr_opts opts
+    private
+
+    def _thr_lang(opts)
       if opts[:lang_att]
-        lang = self.send(opts[:lang_att])
-        nopts = opts.dup
-        nopts[:lang] = lang
-        nopts
+        self.send(opts[:lang_att])
       else
-        opts
+        opts[:lang]
       end
     end
+
   end
 end
 

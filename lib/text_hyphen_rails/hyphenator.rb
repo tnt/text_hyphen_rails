@@ -1,20 +1,23 @@
 module TextHyphenRails
+
   class Hyphenator
 
-    def initialize
-      raise 'don\'t use this class directly'
+    def initialize(text, lang, options)
+      @opts = options
+      @lang = lang
     end
 
     private
 
     def regex
-      @rx ||= /[[:alpha:]]{#{@opts[:min_word_length]},}/m
+      @rx ||= Regexp.new("[[:alpha:]]{#{@opts[:min_word_length]},}")
     end
 
     def hyphenator
-      @hyph ||= ::Text::Hyphen.new(language: @opts[:lang],
+      @hyph ||= ::Text::Hyphen.new(language: @lang,
                                    left: @opts[:left],
                                    right: @opts[:right])
     end
+
   end
 end

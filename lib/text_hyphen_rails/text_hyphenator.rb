@@ -1,9 +1,10 @@
 module TextHyphenRails
+
   class TextHyphenator < Hyphenator
 
-    def initialize text, options
+    def initialize(text, lang, options)
+      super
       @text = text
-      @opts = options
     end
 
     def result
@@ -11,5 +12,6 @@ module TextHyphenRails
         hyphenator.visualize(tok, @opts[:hyphen])
       end
     end
+
   end
 end
