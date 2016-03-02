@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe TextHyphenRails::ActiveRecordExtension do
   before(:all) do
+    @orig_text = 'A blasphemical shortnovela with enormouslargely fantasywords.'
     @uk_hyph = 'A blas-phem-ic-al short-nov-ela with enorm-ouslargely fantasy-words.'
     @us_hyph = 'A blas-phem-i-cal short-nov-ela with enor-mous-large-ly fan-ta-sy-words.'
     @de_hyph = 'Ein blas-phe-mi-scher Kurz-ro-man mit rie-sen-lan-gen Fan-ta-sie-wör-tern.'
@@ -45,6 +46,14 @@ RSpec.describe TextHyphenRails::ActiveRecordExtension do
 
       it 'the created method returns a hyphenated string' do
         expect(subject.text).to eq(@uk_hyph)
+      end
+
+      it 'creates a method with "_orig" suffix' do
+        expect(subject.respond_to? :text_orig).to be true
+      end
+
+      it 'the created method with "_orig" suffix returns the unmodified string' do
+        expect(subject.text_orig).to eq(@orig_text)
       end
     end
 

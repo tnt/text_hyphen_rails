@@ -28,6 +28,7 @@ module TextHyphenRails
             lang = _thr_lang m_opts
             h_class.new(str, lang, m_opts).result
           end
+          self.send(:define_method, "#{att}_orig") { read_attribute att } if opts[:replace_meth]
         end
 
       end

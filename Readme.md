@@ -47,7 +47,7 @@ The follwing options are available:
 | min_word_length | 4                         | minimal length of word to by hyphenated   |
 | left / right    | 1 / 1                     | I'm not sure     |
 | prefix / suffix | nil / :hyph               | prefix / suffix for the created methods (have no effect when `replace_meth` is `true`)    |
-| replace_meth    | false                     | replace the original method (or attribute-getter?) with the hyphenating one |
+| replace_meth    | false                     | replace the original method (or attribute-getter?) with the hyphenating one and create an additional one with `_orig` suffix  |
 
 
 ### `lang_att`
@@ -69,6 +69,16 @@ If you had existing data where the language is named more conventionally in the 
     }[lang]
   end
 ```
+
+### `replace_meth`
+
+```ruby
+  html_hyphen :text, replace_meth: true
+```
+
+Creates a hyphenating `text`-method and a `text_orig`-method to access the unmodified value.
+You should use the `_orig`-variant in forms because otherwise the hyphenated text would be saved in the db after editing.
+
 
 ## Exceptions
 

@@ -10,7 +10,8 @@ module TextHyphenRails
     private
 
     def regex
-      @rx ||= Regexp.new("[[:alpha:]]{#{@opts[:min_word_length]},}")
+      n = @opts[:min_word_length]
+      @rx ||= Regexp.new("[[:alpha:]]{#{n},}")
     end
 
     def hyphenator
