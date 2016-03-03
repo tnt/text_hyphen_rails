@@ -18,12 +18,5 @@ module TextHyphenRails
       @doc.to_s
     end
 
-    private
-
-    def text_nodes
-      # broken
-      @doc.xpath('//text()')
-    end
-
   end
 end

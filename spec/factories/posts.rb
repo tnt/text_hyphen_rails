@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :post do
     sequence(:title) {|n| "Janz wischsch #{n}"}
-    text 'A blasphemical shortnovela with enormouslargely fantasywords.'
+    text 'A blasphemical <blockquote>shortnovela</blockquote> with enormouslargely fantasywords.'
     lang 'en_uk'
     trait :american do
       lang 'en_us'
